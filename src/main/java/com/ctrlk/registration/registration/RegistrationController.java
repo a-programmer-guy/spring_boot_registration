@@ -1,5 +1,6 @@
-package registration;
+package com.ctrlk.registration.registration;
 
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -16,12 +17,11 @@ AllArgsConstructer generates a class with one parameter for every field in the c
 @AllArgsConstructor
 public class RegistrationController {
 
-	/*
-	 * Reference the RegistrationService
-	 */	
-	private RegistrationService registrationService;
+	private final RegistrationService registrationService;
 	
-	public String register(@RequestBody RegistrationService request) {
-		return registrationService.register(request);
-	}
+	// Must add Post Mapping to handler methods that handle POST requests
+    @PostMapping
+    public String register(@RequestBody RegistrationRequest request) {
+        return registrationService.register(request);
+    }
 }

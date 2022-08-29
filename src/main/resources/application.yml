@@ -1,13 +1,14 @@
 server:
+  port: 8080
   error:
     include-message: always
     include-binding-errors: always
 
 spring:
   datasource:
-    password:
+    password: LetMeIn
     url: jdbc:postgresql://localhost:5432/registration
-    username:
+    username: kay
   jpa:
     hibernate:
       ddl-auto: create-drop

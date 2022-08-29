@@ -1,4 +1,4 @@
-package appuser;
+package com.ctrlk.registration.appuser;
 
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
@@ -24,5 +24,8 @@ public class AppUserService implements UserDetailsService {
 		return appUserRepository.findByEmail(email)
 				.orElseThrow(() -> new UsernameNotFoundException(String.format(USER_NOT_FOUND_MSG, email)));
 	}
-
+	
+	public String signUpUser(AppUser appUser) {
+		return "";
+	}
 }

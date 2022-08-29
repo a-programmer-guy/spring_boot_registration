@@ -1,4 +1,4 @@
-package appuser;
+package com.ctrlk.registration.appuser;
 
 import java.util.Collection;
 import java.util.Collections;
@@ -30,23 +30,24 @@ import lombok.Setter;
 @EqualsAndHashCode
 @Entity
 /*
- * Autogenerate UserDetails methods - Right click - source - implement methods
- * @Id annotation from persistend package so we can change the provider easily
+ * Auto generate UserDetails methods - Right click - source - implement methods
+ * @Id annotation from persistence package so we can change the provider easily
  */
 public class AppUser implements UserDetails {
 	
-	@Id
 	@SequenceGenerator(
 			name = "registration_sequence", 
 			sequenceName = "registration_sequence",
 			allocationSize = 1
 			)
+	@Id
 	@GeneratedValue(
 		strategy = GenerationType.SEQUENCE,
 		generator = "registration_sequence"
 		)
-	private long id;
-	private String name;
+	private Long id;
+	private String firstName;
+	private String lastName;
 	private String username;
 	private String email;
 	private String password;
@@ -56,27 +57,25 @@ public class AppUser implements UserDetails {
 	 */
 	@Enumerated(EnumType.STRING)
 	private AppUserRole appUserRole;
-	private Boolean locked;
-	private Boolean enabled;
+	private Boolean locked = false;
+	private Boolean enabled = false;
 	
 	/*
 	 * Autogenerate constructor without Id field - will be generated for us
 	 */	
 	
-	public AppUser(String name, 
+	public AppUser(String firstName,
+			String lastName,
 			String username,
 			String email,
 			String password, 
-			AppUserRole appUserRole, 
-			Boolean locked,
-			Boolean enabled) {
-		this.name = name;
+			AppUserRole appUserRole) {
+		this.firstName = firstName;
+		this.lastName = lastName;
 		this.username = username;
 		this.email = email;
 		this.password = password;
 		this.appUserRole = appUserRole;
-		this.locked = locked;
-		this.enabled = enabled;
 	}
 
 	@Override
@@ -84,7 +83,7 @@ public class AppUser implements UserDetails {
 		SimpleGrantedAuthority authority = new SimpleGrantedAuthority(appUserRole.name());
 		return Collections.singletonList(authority);
 	}
-
+	
 	@Override
 	public String getPassword() {
 		return password;
@@ -94,7 +93,19 @@ public class AppUser implements UserDetails {
 	public String getUsername() {
 		return username;
 	}
+	
+	public String getFirstName() {
+		return firstName;
+	}
+	
+	public String getLastName() {
+		return lastName;
+	}
 
+	public String getEmail() {
+		return email;
+	}
+	
 	@Override
 	public boolean isAccountNonExpired() {
 		return true;
