@@ -3,6 +3,7 @@ package com.ctrlk.registration.registration.token;
 import java.time.LocalDateTime;
 
 import javax.persistence.Column;
+import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -18,9 +19,13 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+/*Getters, setters, noargsconstructor generated with lombok. Neccessrary to include the
+@Entity annotation or will result in: Not a managed type error*/
+
 @Getter
 @Setter
 @NoArgsConstructor
+@Entity
 public class ConfirmationToken {
 	@SequenceGenerator(
 			name = "confirmation_token_sequence",
