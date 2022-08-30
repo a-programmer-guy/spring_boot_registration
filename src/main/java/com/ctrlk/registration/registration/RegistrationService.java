@@ -16,11 +16,12 @@ import lombok.AllArgsConstructor;
 @AllArgsConstructor
 public class RegistrationService {
 	
-	private final AppUserService appUserService = new AppUserService();
+	private final AppUserService appUserService;
 	private EmailValidator emailValidator;
 	
 	public String register(RegistrationRequest request) {
 		boolean isValidEmail = emailValidator.test(request.getEmail());
+		
 		if(!isValidEmail) {
 			throw new IllegalStateException("Email is not valid");
 		}
@@ -31,8 +32,9 @@ public class RegistrationService {
                         request.getUsername(),
                         request.getEmail(),
                         request.getPassword(),
-                        AppUserRole.USER)
-				);
+                        AppUserRole.USER
+                        )
+		);
 	}
 
 }

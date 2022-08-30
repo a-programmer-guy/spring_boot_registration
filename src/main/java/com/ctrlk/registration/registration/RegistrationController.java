@@ -22,6 +22,7 @@ public class RegistrationController {
 	// Must add Post Mapping to handler methods that handle POST requests
     @PostMapping
     public String register(@RequestBody RegistrationRequest request) {
+    	System.out.println("request: " + request);
         return registrationService.register(request);
     }
 }

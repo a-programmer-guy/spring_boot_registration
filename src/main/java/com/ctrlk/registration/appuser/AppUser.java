@@ -34,9 +34,9 @@ import lombok.Setter;
  * @Id annotation from persistence package so we can change the provider easily
  */
 public class AppUser implements UserDetails {
-	
+
 	@SequenceGenerator(
-			name = "registration_sequence", 
+			name = "registration_sequence",
 			sequenceName = "registration_sequence",
 			allocationSize = 1
 			)
@@ -59,16 +59,16 @@ public class AppUser implements UserDetails {
 	private AppUserRole appUserRole;
 	private Boolean locked = false;
 	private Boolean enabled = false;
-	
+
 	/*
 	 * Autogenerate constructor without Id field - will be generated for us
-	 */	
-	
+	 */
+
 	public AppUser(String firstName,
 			String lastName,
 			String username,
 			String email,
-			String password, 
+			String password,
 			AppUserRole appUserRole) {
 		this.firstName = firstName;
 		this.lastName = lastName;
@@ -84,6 +84,12 @@ public class AppUser implements UserDetails {
 		return Collections.singletonList(authority);
 	}
 	
+	public String getFirstName() {
+		return firstName;
+	}
+	public String getLastName() {
+		return lastName;
+	}
 	@Override
 	public String getPassword() {
 		return password;
@@ -93,19 +99,11 @@ public class AppUser implements UserDetails {
 	public String getUsername() {
 		return username;
 	}
-	
-	public String getFirstName() {
-		return firstName;
-	}
-	
-	public String getLastName() {
-		return lastName;
-	}
 
 	public String getEmail() {
 		return email;
 	}
-	
+
 	@Override
 	public boolean isAccountNonExpired() {
 		return true;
