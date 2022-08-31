@@ -53,7 +53,7 @@ public class AppUser implements UserDetails {
 	private String password;
 	/*
 	 * Enumerated specifies a persistent property of field that should be persisted
-	 * as enumerated type. Represents a particular column in the DB
+	 * as enumerated type. Represents a particular column in the DB -Constant
 	 */
 	@Enumerated(EnumType.STRING)
 	private AppUserRole appUserRole;
@@ -64,7 +64,8 @@ public class AppUser implements UserDetails {
 	 * Autogenerate constructor without Id field - will be generated for us
 	 */
 
-	public AppUser(String firstName,
+	public AppUser(
+			String firstName,
 			String lastName,
 			String username,
 			String email,

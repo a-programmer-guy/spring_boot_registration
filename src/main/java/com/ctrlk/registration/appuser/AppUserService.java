@@ -67,4 +67,10 @@ public class AppUserService implements UserDetailsService {
 	
 		return token;
 	}
+
+	// Update users enabled status using the email. 
+	public int enableAppUser(String email) {
+		return appUserRepository.enableAppUser(email);
+		
+	}
 }
