@@ -62,10 +62,11 @@ public class AppUserService implements UserDetailsService {
 		
 		//Save the token in the DB via ConfirmationTokenService layer
 		confirmationTokenService.saveConfirmationToken(confirmationToken);
-
+		
+		return token;
 		// TODO send confirmation email
 	
-		return token;
+		
 	}
 
 	// Update users enabled status using the email. 
